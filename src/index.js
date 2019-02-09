@@ -8,6 +8,7 @@ import path from 'path';
 import middlewares from './middlewares';
 
 import frontRoutes from './frontRoutes';
+import backendRoutes from './backendRoutes';
 
 
 const app = new Express();
@@ -22,6 +23,7 @@ app.use('/static', Express.static(path.join(process.cwd(), 'static'), { maxAge: 
 
 app.use(middlewares.validToken);
 app.use('/api/front', frontRoutes);
+app.use('/api/backend', backendRoutes);
 
 app.listen(port, () => {
   const message = `Server listening on port:${port}`;

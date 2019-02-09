@@ -7,7 +7,6 @@ const router = Express.Router();
 
 router.get('/item', getItemList);
 router.get('/address', getAddressList);
-router.post('/shipping', getShippingList);
 router.post('/order', submit);
 
 export default router;
