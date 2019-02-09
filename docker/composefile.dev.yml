@@ -1,0 +1,27 @@
+version: "3.2"
+services:
+  my-redis:
+    container_name: my-redis
+    build:
+      context: ../
+      dockerfile: ./docker/dockerfile.dev
+    image: my-redis:build
+    environment:
+      NODE_ENV: "development"
+      PORT: 8888
+    ports:
+      - "8888:8888"
+    volumes:
+      - ../:/var/www/my-redis
+    restart: always
+    links:
+      - redis-service
+    depends_on:
+      - redis-service
+  redis-service:
+    container_name: redis-service
+    build:
+      context: ../redis-service
+      dockerfile: dockerfile.dev
+    ports:
+      - 6379:6379
