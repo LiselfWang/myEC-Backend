@@ -1,0 +1,16 @@
+version: "3.2"
+services:
+  my-redis:
+    container_name: my-redis
+    build:
+      context: ../
+      dockerfile: ./docker/dockerfile.test
+    image: my-redis:build
+    environment:
+      NODE_ENV: "test"
+      PORT: 8888
+    ports:
+      - "8888:8888"
+    volumes:
+      - ../:/var/www/my-redis
+    restart: always
