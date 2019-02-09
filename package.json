@@ -7,7 +7,7 @@
     "clean": "rimraf ./dist",
     "start": "./auto/docker-dev-start",
     "local:start": "nodemon --exec \"npx babel-node ./src/index.js\"",
-    "local:build": "babel ./src --out-dir ./dist --copy-files"
+    "build": "babel ./src --out-dir ./dist --copy-files"
   },
   "author": "Leo Lin",
   "license": "MIT",
