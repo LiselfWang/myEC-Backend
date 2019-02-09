@@ -1,18 +1,18 @@
 version: "3.2"
 services:
-  my-redis:
-    container_name: my-redis
+  ec-api:
+    container_name: ec-api
     build:
       context: ../
       dockerfile: ./docker/dockerfile.dev
-    image: my-redis:build
+    image: ec-api:build
     environment:
       NODE_ENV: "development"
       PORT: 8888
     ports:
       - "8888:8888"
     volumes:
-      - ../:/var/www/my-redis
+      - ../:/var/www/ec-api
     restart: always
     links:
       - redis-service

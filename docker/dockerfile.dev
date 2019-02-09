@@ -5,7 +5,7 @@ FROM node:10-alpine
 RUN apk update && apk add bash
 
 # Create app directory.
-WORKDIR /var/www/my-redis
+WORKDIR /var/www/ec-api
 
 # Run and restart on changes.
 CMD npx nodemon --exec "npx babel-node ./src/index.js"

@@ -5,9 +5,16 @@ FROM node:10-alpine
 RUN apk update && apk add bash
 
 # Create app directory.
-WORKDIR /var/www/my-redis
+WORKDIR /var/www/ec-api
 
-RUN npm rebuild
+COPY . .
+
+# Install NPM production deps and cleanup.
+RUN npm i
+
+# Clean and Build
+RUN npm run clean
+RUN npm run build
 
 # Run and restart on changes.
 CMD node ./dist/index.js
