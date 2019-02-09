@@ -5,12 +5,10 @@ services:
     build:
       context: ../
       dockerfile: ./docker/dockerfile.test
-    image: ec-api:build
+    image: ec-api:test
     environment:
       NODE_ENV: "test"
       PORT: 8888
     ports:
       - "8888:8888"
-    volumes:
-      - ../:/var/www/ec-api
     restart: always

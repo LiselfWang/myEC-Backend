@@ -7,16 +7,18 @@ RUN apk update && apk add bash
 # Create app directory.
 WORKDIR /var/www/ec-api
 
+# Install NPM production deps and cleanup.
+
+RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
+
 COPY package*.json ./
 
-# Install NPM production deps and cleanup.
-RUN npm i
+RUN cnpm i
 
 COPY . .
 
-# Clean and Build
-RUN npm run clean
-RUN npm run build
+RUN npx rimraf ./dist
+RUN npx babel ./src --out-dir ./dist
 
 # Run and restart on changes.
 CMD node ./dist/index.js
