@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf ./dist",
-    "start": "./auto/docker-dev-start",
-    "local:start": "nodemon --exec \"npx babel-node ./src/index.js\"",
-    "build": "babel ./src --out-dir ./dist --copy-files"
+    "dev:start": "nodemon --exec \"npx babel-node ./src/index.js\"",
+    "build": "babel ./src --out-dir ./dist --copy-files",
+    "start": "node ./dist/index.js"
   },
   "author": "Leo Lin",
   "license": "MIT",

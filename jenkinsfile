@@ -2,7 +2,14 @@ node('Siteo') {
     stage('Preparation') {
         checkout scm
     }
+    stage('Install') {
+        sh 'npm i'
+    }
     stage('Build'){
-      sh 'auto/docker-test-start'
+      sh 'npm run clean'
+      sh 'npm run build'
+    }
+    stage('Run'){
+        sh 'npm run start'
     }
 }
