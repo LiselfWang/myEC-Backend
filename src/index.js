@@ -21,7 +21,7 @@ app.get('/heartbeat', (req, res) => {
 app.use('/static', Express.static(path.join(process.cwd(), 'static'), { maxAge: '1d' }));
 
 app.use(middlewares.validToken);
-app.use('/front', frontRoutes);
+app.use('/api/front', frontRoutes);
 
 app.listen(port, () => {
   const message = `Server listening on port:${port}`;
