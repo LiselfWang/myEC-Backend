@@ -13,11 +13,14 @@ const checkToken = (token) => {
 }
 
 export default (req, res, next) => {
-  if(!checkToken(req.headers[TOKEN_KEY])) {
-    const err = new Error('Forbidden');
-    err.statusCode = 403;
-    next(err);
-    return;
+  console.log(req)
+  if(req.method !== 'OPTIONS') {
+    if(!checkToken(req.headers[TOKEN_KEY])) {
+      const err = new Error('Forbidden');
+      err.statusCode = 403;
+      next(err);
+      return;
+    }
   }
 
   next();
