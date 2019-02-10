@@ -7,7 +7,7 @@
     "clean": "rimraf dist",
     "dev:start": "nodemon --exec \"npx babel-node ./src/index.js\"",
     "build": "babel src --out-dir dist --copy-files",
-    "start": "pm2 delete dist/index.js; pm2 start dist/index.js"
+    "start": "pm2 delete ec-api; pm2 start dist/index.js ec-api"
   },
   "author": "Leo Lin",
   "license": "MIT",
