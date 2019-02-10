@@ -21,6 +21,7 @@ app.get('/heartbeat', (req, res) => {
 
 app.use('/static', Express.static(path.join(process.cwd(), 'static'), { maxAge: '1d' }));
 
+app.use(middlewares.processRes);
 app.use(middlewares.validToken);
 app.use('/api/front', frontRoutes);
 app.use('/api/backend', backendRoutes);
