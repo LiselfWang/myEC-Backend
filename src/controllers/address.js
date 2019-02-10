@@ -1,20 +1,23 @@
 const addressList = [
   {
+    id:1,
     contactName: '林立',
-    contactPhone: '18591919101',
-    address: '陕西省西安市雁塔区天谷八路环普产业科技园E座6F',
-    isDefault: true,
-  },
-  {
-    contactName: '林立',
-    contactPhone: '18591919101',
-    address: '陕西省西安市灞桥区长乐东路御锦城三期三号楼一单元1102室',
+    contactPhone: '1859191****',
+    address: '陕西省西安市雁塔区天谷八路环普产业科技园',
     isDefault: false,
   },
   {
+    id:2,
+    contactName: '林立',
+    contactPhone: '1859191****',
+    address: '陕西省西安市灞桥区长乐东路御锦城',
+    isDefault: true,
+  },
+  {
+    id:3,
     contactName: '王俐力',
-    contactPhone: '18091185557',
-    address: '陕西省西安市灞桥区长乐东路御锦城三期三号楼一单元1102室',
+    contactPhone: '1809118****',
+    address: '陕西省西安市灞桥区长乐东路御锦城',
     isDefault: false,
   },
 ];
