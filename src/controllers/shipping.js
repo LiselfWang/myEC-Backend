@@ -19,6 +19,18 @@ const shippingList = [
 
 
 export const getList = async (req, res, next) => {
-  res.send(shippingList)
-  res.end();
+  req.models.shipping.find({isDeleted:0}, (err, results) => {
+    res.send(results);
+    res.end();
+  });
+}
+
+export const add = async (req, res, next) => {
+  const newShipping = {
+    shippingName: "韵达快递"
+  }
+  req.models.shipping.create(newShipping, (err, results) => {
+    res.send(results);
+    res.end();
+  });
 }
