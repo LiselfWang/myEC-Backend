@@ -18,15 +18,14 @@ export default (req, res, next) => {
   res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
 
   if(req.method === "OPTIONS"){
-    res.statusCode = 200;
+    res.sendStatus(200);
     res.end();
     return;
   }
 
   if( !checkToken(req.headers[TOKEN_KEY])) {
-    const err = new Error('Forbidden');
-    err.statusCode = 403;
-    next(err);
+    res.sendStatus(403);
+    res.end();
     return;
   }
   

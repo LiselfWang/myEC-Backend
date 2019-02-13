@@ -1,6 +1,7 @@
 create table t_order(
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`orderNumber` VARCHAR(50) NOT NULL,
+	`totalAmount` DECIMAL(10,2) NOT NULL,
 	`message` VARCHAR(500) NULL,
 	`contactName` VARCHAR(50) NULL,
 	`contactPhone` VARCHAR(50) NULL,

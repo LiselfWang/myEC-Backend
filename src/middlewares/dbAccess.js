@@ -1,7 +1,7 @@
 import orm from 'orm';
 
 
-const baseModel = {
+const baseModelDefine = {
   id: Number,
   isDeleted: Number,
   modifyBy: String,
@@ -10,30 +10,40 @@ const baseModel = {
   createDate: Date,
 };
 
+export const baseModel = {
+  isDeleted: 0,
+  modifyBy: 'System Default',
+  modifyDate: new Date(),
+  createBy: 'System Default',
+  createDate: new Date(),
+}
+
 export default orm.express("mysql://admin:3793381lin@siteo.cbmvxfudhnyb.ap-southeast-1.rds.amazonaws.com/siteo", {
 	define: function (db, models, next) {
 		models.shipping = db.define("t_shipping", {
+      ...baseModelDefine,
       shippingName: String,
-      ...baseModel,
     });
 
     models.item = db.define("t_item", {
+      ...baseModelDefine,
       itemNumber: String,
       itemName: String,
       itemPic: String,
       itemPrice: Number,
-      ...baseModel,
     });
 
     models.address = db.define("t_address", {
+      ...baseModelDefine,
       contactName: String,
       contactPhone: String,
       address: String,
-      ...baseModel,
     });
 
     models.order = db.define("t_order", {
+      ...baseModelDefine,
       orderNumber: String,
+      totalAmount: Number,
       message: String,
       contactName: String,
       contactPhone: String,
@@ -44,7 +54,14 @@ export default orm.express("mysql://admin:3793381lin@siteo.cbmvxfudhnyb.ap-south
       shippingDate: Date,
       submitDate: Date,
       payDate: Date,
-      ...baseModel,
+    });
+
+    models.orderItem = db.define("t_order_item", {
+      ...baseModelDefine,
+      orderNumber: String,
+      itemNumber: String,
+      quantity: Number,
+      itemPrice: Number,
     });
 
 		next();

@@ -5,6 +5,7 @@ import path from 'path';
 // const client = redis.createClient(6379,'redis-service');
 
 // client.set('hello','This is a value!');
+import bodyParser from 'body-parser';
 import middlewares from './middlewares';
 
 import frontRoutes from './frontRoutes';
@@ -18,6 +19,8 @@ app.get('/heartbeat', (req, res) => {
   res.send('Hello world');
   res.end();
 });
+
+app.use(bodyParser.json());  
 
 app.use('/static', Express.static(path.join(process.cwd(), 'static'), { maxAge: '1d' }));
 
