@@ -34,8 +34,8 @@ export const submit = async (req, res, next) => {
       order.contactPhone = result.contactPhone;
       order.address = result.address;
 
-      const itemList = req.body.items;
-      const itemNumbers = map(itemList, item => {
+      const paramItemList = req.body.items;
+      const itemNumbers = map(paramItemList, item => {
         return item.itemNumber;
       });
 
@@ -49,7 +49,7 @@ export const submit = async (req, res, next) => {
         let totalAmount = 0;
         for (let index = 0; index < items.length; index++) {
           const item = items[index];
-          totalAmount += item.itemPrice;
+          totalAmount += item.itemPrice * paramItemList[index].quantity;
         }
     
         order.totalAmount = totalAmount;
@@ -57,7 +57,7 @@ export const submit = async (req, res, next) => {
         order.payDate = new Date();
 
         req.models.order.create(order, (err, createdOrder) => {
-          createOrderItemCallback(req, res, items, createdOrder, itemList, 0);
+          createOrderItemCallback(req, res, items, createdOrder, paramItemList, 0);
         });
       });
     });
