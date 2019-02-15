@@ -43,6 +43,7 @@ export default orm.express("mysql://admin:3793381lin@siteo.cbmvxfudhnyb.ap-south
     models.order = db.define("t_order", {
       ...baseModelDefine,
       orderNumber: String,
+      orderStatus: String,
       totalAmount: Number,
       message: String,
       contactName: String,
