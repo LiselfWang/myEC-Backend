@@ -4,6 +4,4 @@ export const getList = async (req, res, next) => {
     res.send(mapViewModel(results));
     res.end();
   });
-  res.send(addressList)
-  res.end();
 }

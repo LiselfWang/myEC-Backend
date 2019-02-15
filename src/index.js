@@ -1,5 +1,6 @@
 import Express from 'express';
 import path from 'path';
+import cors from 'cors';
 //import redis from 'redis';
 
 // const client = redis.createClient(6379,'redis-service');
@@ -20,12 +21,12 @@ app.get('/heartbeat', (req, res) => {
   res.end();
 });
 
+app.use(cors());
 app.use(bodyParser.json());  
 
 app.use('/static', Express.static(path.join(process.cwd(), 'static'), { maxAge: '1d' }));
 
 app.use(middlewares.dbAccess);
-app.use(middlewares.processRes);
 app.use(middlewares.validToken);
 app.use('/api/front', frontRoutes);
 app.use('/api/backend', backendRoutes);

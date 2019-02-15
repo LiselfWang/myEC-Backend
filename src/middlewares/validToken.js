@@ -13,17 +13,12 @@ const checkToken = (token) => {
 }
 
 export default (req, res, next) => {
-  if(req.method === "OPTIONS"){
-    res.sendStatus(200);
-    res.end();
-    return;
-  }
-
   if( !checkToken(req.headers[TOKEN_KEY])) {
     res.sendStatus(403);
     res.end();
     return;
   }
   
+  console.log('Passed token check');
   next();
 }
