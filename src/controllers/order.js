@@ -94,3 +94,20 @@ export const getOrderItem = async (req, res, next) => {
     res.end();
   });
 }
+
+export const ship = async (req, res, next) => {
+  req.models.order.one({orderNumber: req.body.orderNumber}, (err, order) => {
+    order.shippingId = req.body.shippingId;
+
+    req.models.shipping.one({id: req.body.shippingId}, (err, shipping) => {
+      order.shippingName = shipping.shippingName;
+      order.shippingNumber = req.body.shippingNumber;
+      order.shippingDate = new Date();
+      order.orderStatus = 'shipped';
+      order.save();
+  
+      res.send(order);
+      res.end();
+    });
+  });
+}
