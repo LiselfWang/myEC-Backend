@@ -1,4 +1,3 @@
-import reduce from 'lodash/reduce';
 import map from 'lodash/map';
 import { baseModel } from '../middlewares/dbAccess';
 import { generateOrderNumber } from '../utils/helpers';
@@ -19,6 +18,7 @@ export const submit = async (req, res, next) => {
       ...baseModel,
       orderNumber: generateOrderNumber(),
       message: req.body.message,
+      orderStatus: 'paid',
     }
 
     req.models.address.find({id:addressId}, (err, [result]) => {
@@ -78,10 +78,19 @@ const createOrderItemCallback = (req, res, items, createdOrder, paramItemList, i
       itemNumber: item.itemNumber,
       quantity:  paramItemList[index].quantity,
       itemPrice: item.itemPrice,
+      itemName: item.itemName,
+      itemPic: item.itemPic,
     }
 
     req.models.orderItem.create(orderItem, (err, result) => {
         createOrderItemCallback(req, res, items, createdOrder, paramItemList, index + 1);
     });
   }
+}
+
+export const getOrderItem = async (req, res, next) => {
+  req.models.orderItem.find({isDeleted:0, orderNumber: req.params.orderNumber}, (err, results) => {
+    res.send(mapViewModel(results));
+    res.end();
+  });
 }

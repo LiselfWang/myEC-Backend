@@ -38,6 +38,7 @@ export default orm.express("mysql://admin:3793381lin@siteo.cbmvxfudhnyb.ap-south
       contactName: String,
       contactPhone: String,
       address: String,
+      isDefault: Number,
     });
 
     models.order = db.define("t_order", {
@@ -61,6 +62,8 @@ export default orm.express("mysql://admin:3793381lin@siteo.cbmvxfudhnyb.ap-south
       ...baseModelDefine,
       orderNumber: String,
       itemNumber: String,
+      itemName: String,
+      itemPic: String,
       quantity: Number,
       itemPrice: Number,
     });
