@@ -7,6 +7,7 @@ create table t_order(
 	`contactName` VARCHAR(50) NULL,
 	`contactPhone` VARCHAR(50) NULL,
 	`address` VARCHAR(50) NULL,
+	`userAccount` VARCHAR(50) NOT NULL,
 	`shippingId` INT,
 	`shippingName` VARCHAR(50) NULL,
 	`shippingNumber` VARCHAR(50) NULL,

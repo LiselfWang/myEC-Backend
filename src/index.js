@@ -27,9 +27,8 @@ app.use(bodyParser.json());
 app.use('/static', Express.static(path.join(process.cwd(), 'static'), { maxAge: '1d' }));
 
 app.use(middlewares.dbAccess);
-app.use(middlewares.validToken);
-app.use('/api/front', frontRoutes);
-app.use('/api/backend', backendRoutes);
+app.use('/api/front', middlewares.validUserToken, frontRoutes);
+app.use('/api/backend', middlewares.validAdminToken, backendRoutes);
 
 app.listen(port, () => {
   const message = `Server listening on port:${port}`;

@@ -28,6 +28,7 @@ export const submit = async (req, res, next) => {
         return;
       }
 
+      order.userAccount = req.currentUser.account;
       order.contactName = result.contactName;
       order.contactPhone = result.contactPhone;
       order.address = result.address;

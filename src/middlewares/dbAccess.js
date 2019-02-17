@@ -50,6 +50,7 @@ export default orm.express("mysql://admin:3793381lin@siteo.cbmvxfudhnyb.ap-south
       contactName: String,
       contactPhone: String,
       address: String,
+      userAccount: String,
       shippingId: Number,
       shippingName: String,
       shippingNumber: String,
